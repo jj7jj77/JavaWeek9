@@ -1,0 +1,127 @@
+package javaclasshomework9;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+public class JPizza extends JFrame implements ItemListener
+{ 
+    //Pizza Sizes
+    final double SmallPizzaPrice = 7;
+    final double MediumPizzaPrice = 9;
+    final double LargePizzaPrice = 11;
+    final double ExtraLargePizzaPrice = 14;
+    
+    //Additional Pizza Toppings
+    final double CheesePizzaToppings = 0;
+    final double PepperoniPizzaToppings = 1;
+    final double MushroomPizzaToppings = 1;
+    final double SpinachPizzaToppings = 1;
+    
+    double totalPrice;
+    
+    //creating JBoxes
+    JLabel PizzaSizeLabel = new JLabel("What toppings would you like? ");
+    JCheckBox SmallPizzaSize = new JCheckBox("Small pizza price is " + SmallPizzaPrice, false);
+    JCheckBox MediumPizzaSize = new JCheckBox("Medium pizza price is " + MediumPizzaPrice, false);
+    JCheckBox LargePizzaSize = new JCheckBox("Large pizza price is " + LargePizzaPrice, false);
+    JCheckBox ExtraLargePizzaSize = new JCheckBox("Extra large pizza price is " + ExtraLargePizzaPrice, false);
+
+    JLabel AdditionalToppingsLabel = new JLabel("What toppings would you like? ");
+    JCheckBox CheeseToppings = new JCheckBox("Cheese", false);
+    JCheckBox PepperoniToppings = new JCheckBox("Pepperoni", false);
+    JCheckBox MushroomToppings = new JCheckBox("Mushrooms", false);
+    JCheckBox SpinachToppings = new JCheckBox("Spinach", false);
+    JTextField Price = new JTextField(4);
+    JLabel PriceLabel = new JLabel("The total is " );   
+    
+    public JPizza()
+    {
+        super("The Pizza Chooser");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new FlowLayout());
+        add(PizzaSizeLabel);
+        add(SmallPizzaSize);
+        add(MediumPizzaSize);
+        add(LargePizzaSize);
+        add(ExtraLargePizzaSize);
+        add(AdditionalToppingsLabel);
+        add(CheeseToppings);
+        add(PepperoniToppings);
+        add(MushroomToppings);
+        add(SpinachToppings);
+        add(PriceLabel);
+        add(Price);
+        
+        //PriceLabel.setText("$" + totalPrice);
+        Price.setText("$" + totalPrice);
+        SmallPizzaSize.addItemListener(this);
+        MediumPizzaSize.addItemListener(this);
+        LargePizzaSize.addItemListener(this);
+        ExtraLargePizzaSize.addItemListener(this);
+        CheeseToppings.addItemListener(this);
+        PepperoniToppings.addItemListener(this);
+        MushroomToppings.addItemListener(this);
+        SpinachToppings.addItemListener(this);
+    }
+    
+    @Override
+    public void itemStateChanged(ItemEvent event)
+    {
+        Object source = event.getSource();
+        int select = event.getStateChange();
+        if(source == SmallPizzaSize)
+            if(select == ItemEvent.SELECTED)
+                totalPrice += SmallPizzaPrice;
+            else
+                totalPrice -= SmallPizzaPrice;
+        else if(source == MediumPizzaSize)
+            if (select == ItemEvent.SELECTED)
+                totalPrice += MediumPizzaPrice;
+            else
+                totalPrice -= MediumPizzaPrice;
+        else if (source == LargePizzaSize) 
+            if(select == ItemEvent.SELECTED)
+                totalPrice += LargePizzaPrice;
+            else
+                totalPrice -= LargePizzaPrice;
+        
+        else if (source == ExtraLargePizzaSize) 
+            if(select == ItemEvent.SELECTED)
+                totalPrice += ExtraLargePizzaPrice;
+            else
+                totalPrice -= ExtraLargePizzaPrice;
+        //PriceLabel.setText("$" + totalPrice);
+        Price.setText("$" + totalPrice);
+        
+        if(source == CheeseToppings)
+            if(select == ItemEvent.SELECTED)
+                totalPrice += CheesePizzaToppings;
+            else
+                totalPrice -= CheesePizzaToppings;   
+        else if(source == PepperoniToppings)
+            if (select == ItemEvent.SELECTED)
+                totalPrice += PepperoniPizzaToppings;
+            else
+                totalPrice -= PepperoniPizzaToppings;
+        else if (source == MushroomToppings) 
+            if(select == ItemEvent.SELECTED)
+                totalPrice += MushroomPizzaToppings;
+            else
+                totalPrice -= MushroomPizzaToppings;
+        else if (source == SpinachToppings) 
+            if(select == ItemEvent.SELECTED)
+                totalPrice += SpinachPizzaToppings;
+            else
+                totalPrice -= SpinachPizzaToppings;
+        //PriceLabel.setText("$" + totalPrice); //don't make it a text baox of price
+        Price.setText("$" + totalPrice);  //makes it a price text box
+    }
+
+    public static void main(String[] args) 
+    {
+      JPizza aFrame = new JPizza();
+      final int Width = 500;
+      final int Height = 200;
+      aFrame.setSize(Width, Height);
+      aFrame.setVisible(true);
+    }
+}
