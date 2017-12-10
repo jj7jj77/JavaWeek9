@@ -1,0 +1,31 @@
+package jpractices;
+import javax.swing.*;
+import java.awt.*;
+public class JFrame5
+{
+   public static void main(String[] args)
+   {
+       //doesn't work bc the labels are added to the frame, but only the last one added is visible. the label is placed on top of the first one or previous one.
+       //would need to use the Flow Layout not the border layout bc it places everything in the same region and shows only the last one
+      final int FRAME_WIDTH = 550;
+      final int FRAME_HEIGHT = 300;
+      JFrame aFrame = new JFrame("Fifth frame");
+      aFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+      aFrame.setVisible(true);
+      aFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      aFrame.setLayout(new BorderLayout());
+      JLabel greeting = new JLabel("Hello");
+      JLabel greeting2 = new JLabel("Who are you?");
+      JLabel greeting3 = new JLabel("What is your name?");
+      JLabel greeting4 = new JLabel("How are you?");
+      aFrame.add(greeting, BorderLayout.NORTH);
+      aFrame.add(greeting2, BorderLayout.SOUTH);
+      aFrame.add(greeting3, BorderLayout.WEST);
+      aFrame.add(greeting4, BorderLayout.EAST);
+      aFrame.add(greeting);
+      aFrame.add(greeting2);
+      aFrame.add(greeting3);
+      aFrame.add(greeting4);
+    }
+}
+//would put greeting in the north, but doesn't. need to use flow layout
